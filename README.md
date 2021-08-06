@@ -20,7 +20,23 @@ By: Jona Brown, Benjamin Ibarra, Joel Connell
 * [License](#license)
 
 ## General Information
+1. Summary of idea.
 
+Flight Tracker API - Azure Skies.
+
+
+Track a flight by entering in the name of the flight carrier, flight number and date. This will set your phone up for text messages on whether the flight is taking off, landing or boarding.
+
+
+2. What problem or pain point does it solve?
+
+Have you ever wanted to keep track of when a flight is boarding, taking off and landing without needing to visit any website or consistently open an app? Azure skies will be able to send you automated text messages based on flight status. This means you will always be able to stay up to date without the click of a button, no matter which airline you (or they) are traveling with.
+
+
+3. Minimum Viable Product (MVP) definition?
+
+
+Text your flight number (maybe flight carrier), as well as the date of the flight and receive an immediate status of the flight as well as the duration of the flight.
 
 ## Technologies Used
 
