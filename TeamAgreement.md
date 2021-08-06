@@ -1,5 +1,10 @@
 # AzureSkies Team Agreement
 
+### Members:
+Jona Brown  
+Joel Connell  
+Benjamin Ibarra  
+
 ## Cooperation Plan
 #### What are the key strengths of each person on the team?  
 - Jona Brown - A strong understanding of workflow, in regards to code implementation
