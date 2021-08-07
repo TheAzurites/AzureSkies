@@ -59,6 +59,7 @@ Text your flight number (maybe flight carrier), as well as the date of the fligh
 
 
 ## Architecture
+![AzureSkies](./images/AzureSkies.png)
 
 ## Setup
 
