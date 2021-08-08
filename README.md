@@ -1,6 +1,6 @@
 # Azure Skies
 
-> An SMS flight tracker keeps you updated with flight statuses in real time.
+> The SMS flight tracker that keeps you updated with your desired flight's status in real time.
 
 By: Jona Brown, Benjamin Ibarra, Joel Connell
 
@@ -74,7 +74,7 @@ In Progress
 
 ## Room for Improvement
 
-To do: Everything
+To do: Everything...
 
 ## Acknowledgements
 
