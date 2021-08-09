@@ -1,0 +1,30 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:39473",
+      "sslPort": 44359
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "CommunicationServiceConnection": "endpoint=https://azure-skies-sms.communication.azure.com/;accesskey=tLTapms6jHF+TPm8K9t+/27b2zuamxJx68U5Dggv8X5QXbyBL8+qVLG+hBMMbcvb5JPFuc1px/7m7j5/GYIk6A==",
+        "CommunicationServiceEndpoint": "https://azure-skies-sms.communication.azure.com/",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "AzureSkies": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": "true",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    }
+  }
+}
