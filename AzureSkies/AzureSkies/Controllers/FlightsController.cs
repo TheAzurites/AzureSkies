@@ -38,47 +38,53 @@ namespace AzureSkies.Controllers
         }
 
         // PUT: api/Flights/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlightInfo(int id, FlightInfo flightInfo)
-        {
-            if (id != flightInfo.Id)
-            {
-                return BadRequest();
-            }
-            _context.Entry(flightInfo).State = EntityState.Modified;
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutFlightInfo(int id, FlightInfo flightInfo)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    _context.Entry(flightInfo).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FlightInfoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!FlightInfoExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
+
+        //https://localhost:44359/api/flights/flightNumber/2072/airline/delta/date/2021-08-10
 
         // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpGet("flightNumber/{flightNumber}/airline/{airline}/date/{date}")]
         public async Task<ActionResult<FlightInfo>> GetFlightInfo(string flightNumber, string airline, string date)
         {
-            FlightDTO flightDTO = await _service.AddFlight(flightNumber, airline, date);
-            FlightInfo flightInfo = new()
+            FlightInfo flightInfo = await _service.AddFlight(flightNumber, airline, date);
+            FlightDTO flightDTO = new()
             {
-                FlightDate = flightDTO.Date,
-                FlightNumber = flightDTO.FlightNumber,
-                Airline = flightDTO.Airline
+                flightDate = flightInfo.data.flight_date
             };
             return flightInfo;
+        }
+
+        [HttpGet("helloworld")]
+        public string SayHello()
+        {
+            return "Hello There from Controller";
         }
 
         // DELETE: api/Flights/5
@@ -97,9 +103,9 @@ namespace AzureSkies.Controllers
             return NoContent();
         }
 
-        private bool FlightInfoExists(int id)
-        {
-            return _context.FlightInfo.Any(e => e.Id == id);
-        }
+        //private bool FlightInfoExists(int id)
+        //{
+        //    return _context.FlightInfo.Any(e => e.Id == id);
+        //}
     }
 }
