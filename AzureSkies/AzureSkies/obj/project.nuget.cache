@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z1uNflbW1VsyW47RPhrNNbuyAUImU5YAppjS/QheV3S69wNlEXS8jJeI56QjsdXSHYcagARA4qgCIGTTdvknLg==",
+  "dgSpecHash": "Y+Q3pFTktPxJDrKfmSatKSR8dhsOCzskFJjlVkmmAcesceKScV7Kdgy2AoxkX2hZ8Q9oap3Bn5tpEnyu9d/1BA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jona\\Source\\Repos\\TheAzurites\\AzureSkies\\AzureSkies\\AzureSkies\\AzureSkies.csproj",
+  "projectFilePath": "C:\\Users\\Jona\\source\\repos\\TheAzurites\\AzureSkies\\AzureSkies\\AzureSkies\\AzureSkies.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jona\\.nuget\\packages\\azure.communication.sms\\1.0.0\\azure.communication.sms.1.0.0.nupkg.sha512",
     "C:\\Users\\Jona\\.nuget\\packages\\azure.core\\1.11.0\\azure.core.1.11.0.nupkg.sha512",

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AzureSkies.Data;
 using AzureSkies.Models;
+using AzureSkies.Services;
+using AzureSkies.DTO;
 
 namespace AzureSkies.Controllers
 {
@@ -15,35 +17,27 @@ namespace AzureSkies.Controllers
     public class FlightsController : ControllerBase
     {
         private readonly AzureSkiesDbContext _context;
+        private readonly FlightStatusService _service;
 
-        public FlightsController(AzureSkiesDbContext context)
+        // DI
+        public FlightsController(AzureSkiesDbContext context, FlightStatusService service)
         {
             _context = context;
+            _service = service;
         }
 
-        // GET: api/Flights
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<FlightInfo>>> GetFlightInfo()
+        // GET: api/Flights/4506/Date/2021-08-09
+        [HttpGet("FlightNumber/{FlightNumber}/Date/{FlightDate}")]
+        public async Task<ActionResult<string>> GetFlightInfo(string FlightNumber, string FlightDate)
         {
-            return await _context.FlightInfo.ToListAsync();
-        }
+            //var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
+            //return flightDTO;
 
-        // GET: api/Flights/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<FlightInfo>> GetFlightInfo(int id)
-        {
-            var flightInfo = await _context.FlightInfo.FindAsync(id);
+            return ($"{FlightNumber} {FlightDate}");
 
-            if (flightInfo == null)
-            {
-                return NotFound();
-            }
-
-            return flightInfo;
         }
 
         // PUT: api/Flights/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFlightInfo(int id, FlightInfo flightInfo)
         {
@@ -51,7 +45,6 @@ namespace AzureSkies.Controllers
             {
                 return BadRequest();
             }
-
             _context.Entry(flightInfo).State = EntityState.Modified;
 
             try
