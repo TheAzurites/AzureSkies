@@ -27,13 +27,13 @@ namespace AzureSkies.Controllers
         }
 
         // GET: api/Flights/4506/Date/2021-08-09
-        [HttpGet("FlightNumber/{FlightNumber}/Date/{FlightDate}")]
-        public async Task<ActionResult<string>> GetFlightInfo(string FlightNumber, string FlightDate)
+        [HttpPost("incoming/{incoming}")]
+        public  void  GetFlightInfo(NewSMSFlightDTO incoming)
         {
             //var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
             //return flightDTO;
 
-            return ($"{FlightNumber} {FlightDate}");
+            
 
         }
 
@@ -68,13 +68,17 @@ namespace AzureSkies.Controllers
 
         // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<FlightInfo>> PostFlightInfo(FlightInfo flightInfo)
+        [HttpGet("flightNumber/{flightNumber}/airline/{airline}/date/{date}")]
+        public async Task<ActionResult<FlightInfo>> GetFlightInfo(string flightNumber, string airline, string date)
         {
-            _context.FlightInfo.Add(flightInfo);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetFlightInfo", new { id = flightInfo.Id }, flightInfo);
+            FlightDTO flightDTO = await _service.AddFlight(flightNumber, airline, date);
+            FlightInfo flightInfo = new()
+            {
+                FlightDate = flightDTO.Date,
+                FlightNumber = flightDTO.FlightNumber,
+                Airline = flightDTO.Airline
+            };
+            return flightInfo;
         }
 
         // DELETE: api/Flights/5

@@ -10,9 +10,9 @@ namespace AzureSkies.Interfaces
     public interface IFlightStatus
     {
         // Get Flight data from API
-        public Task<FlightDTO> GetFlight(string flightDate, string flightNumber);
+        public Task<FlightDTO> GetFlight(NewSMSFlightDTO newSMSFlightDTO);
 
-        public Task<FlightDTO> AddFlight(FlightInfo flight);
+        public Task<FlightDTO> AddFlight(string flightNumber, string airline, string date);
 
         public Task Delete(int id);
     }

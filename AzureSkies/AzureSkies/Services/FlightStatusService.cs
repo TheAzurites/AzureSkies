@@ -13,11 +13,17 @@ namespace AzureSkies.Services
     {
         static HttpClient client = new HttpClient();
 
-        public async Task<FlightDTO> AddFlight(FlightInfo flight)
+        public async Task<FlightDTO> AddFlight(string flightNumber, string airline, string date)
         {
-            string path = $"https://api.aviationstack.com/v1/flights?flight_status=" +
-                            $"{flight.FlightStatus}&airlineName={flight.Airline}&flightNumber={flight.FlightNumber}" +
-                            $"&flightDate{flight.FlightDate}";
+            string access_key = "00d536921176e9ab78f646a12b9c15e8";
+            string path = $"http://api.aviationstack.com/v1/flights?{access_key}&" +
+                            $"airlineName={airline}&flightNumber={flightNumber}" +
+                            $"&flightDate={date}";
+
+            /*  string path = $"http://api.aviationstack.com/v1/flights?{access_key}&" +
+                            $"airlineName={flight.Airline}&flightNumber={flight.FlightNumber}" +
+                            $"&flightDate={flight.FlightDate}";
+            */
 
             // FlightDTO should be flightInfo when finished. We should create a new DTO from the flightinfo that we 
             // get.
@@ -31,7 +37,7 @@ namespace AzureSkies.Services
             return flightInfo;
         }
 
-        public Task<FlightDTO> GetFlight(string flightNumber, string flightDate)
+        public Task<FlightDTO> GetFlight(NewSMSFlightDTO newSMSFlightDTO)
         {
             throw new NotImplementedException();
         }
