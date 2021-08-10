@@ -1,4 +1,5 @@
-﻿using AzureSkies.Interfaces;
+﻿using AzureSkies.DTO;
+using AzureSkies.Interfaces;
 using AzureSkies.Models;
 using System;
 using System.Collections.Generic;
@@ -12,22 +13,25 @@ namespace AzureSkies.Services
     {
         static HttpClient client = new HttpClient();
 
-        public async Task<FlightInfo> AddFlight(FlightInfo flight)
+        public async Task<FlightDTO> AddFlight(FlightInfo flight)
         {
             string path = $"https://api.aviationstack.com/v1/flights?flight_status=" +
                             $"{flight.FlightStatus}&airlineName={flight.Airline}&flightNumber={flight.FlightNumber}" +
                             $"&flightDate{flight.FlightDate}";
 
-            FlightInfo flightInfo = new();
+            // FlightDTO should be flightInfo when finished. We should create a new DTO from the flightinfo that we 
+            // get.
+            FlightDTO flightInfo = new();
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
-                flightInfo = await response.Content.ReadAsAsync<FlightInfo>();
+                flightInfo = await response.Content.ReadAsAsync<FlightDTO>();
             }
+
             return flightInfo;
         }
 
-        public Task<FlightInfo> GetFlight(string path)
+        public Task<FlightDTO> GetFlight(string flightNumber, string flightDate)
         {
             throw new NotImplementedException();
         }

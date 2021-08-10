@@ -13,10 +13,13 @@ namespace AzureSkies.Data
 
         public AzureSkiesDbContext(DbContextOptions options) : base(options)
         { 
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<FlightInfo>().HasData(
                 new FlightInfo {
                     Id = 1,
