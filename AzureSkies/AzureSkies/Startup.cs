@@ -1,4 +1,6 @@
 using AzureSkies.Data;
+using AzureSkies.Interfaces;
+using AzureSkies.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,7 @@ namespace AzureSkies
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
             });
+            services.AddTransient<IFlightStatus, FlightStatusService>();
             services.AddRazorPages();
         }
 
@@ -56,6 +59,7 @@ namespace AzureSkies
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }
