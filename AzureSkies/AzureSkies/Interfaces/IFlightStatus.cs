@@ -12,7 +12,7 @@ namespace AzureSkies.Interfaces
         // Get Flight data from API
         public Task<FlightDTO> GetFlight(NewSMSFlightDTO newSMSFlightDTO);
 
-        public Task<FlightDTO> AddFlight(string flightNumber, string airline, string date);
+        public Task<FlightInfo> AddFlight(string flightNumber, string airline, string date);
 
         public Task Delete(int id);
     }

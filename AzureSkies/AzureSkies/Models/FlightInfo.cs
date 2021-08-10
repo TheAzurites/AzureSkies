@@ -8,16 +8,9 @@ namespace AzureSkies.Models
 {
     public class FlightInfo
     {
+        public int id { get; set; }
         [Required]
-        public int Id { get; set; }
-        [Required]
-        public string FlightStatus { get; set; }
-        [Required]
-        public string FlightDate { get; set; }
-        [Required]
-        public string FlightNumber { get; set; }
-        [Required]
-        public string Airline { get; set; }
+        public Data Data { get; set; }
 
         //public IList<string> GuestPhoneNumber { get; set; }
     }
