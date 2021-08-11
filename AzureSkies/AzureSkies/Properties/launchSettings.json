@@ -13,6 +13,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "CommunicationServiceConnection": "endpoint=https://azure-skies-sms.communication.azure.com/;accesskey=tLTapms6jHF+TPm8K9t+/27b2zuamxJx68U5Dggv8X5QXbyBL8+qVLG+hBMMbcvb5JPFuc1px/7m7j5/GYIk6A==",
+        "AVIATION_STACK_API_KEY": "00d536921176e9ab78f646a12b9c15e8",
         "CommunicationServiceEndpoint": "https://azure-skies-sms.communication.azure.com/",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
