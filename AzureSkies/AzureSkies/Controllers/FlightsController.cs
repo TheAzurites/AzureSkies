@@ -64,14 +64,14 @@ namespace AzureSkies.Controllers
         //    return NoContent();
         //}
 
-        //https://localhost:44359/api/flights/flightNumber/2072/airline/delta/date/2021-08-10
+        //https://localhost:44359/api/flights/flighticao/dal0380
 
         // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpGet("flightNumber/{flightNumber}/airline/{airline}/date/{date}")]
-        public async Task<ActionResult<Root>> GetFlightInfo(string flightNumber, string airline, string date)
+        [HttpGet("flighticao/{flight_icao}")]
+        public async Task<ActionResult<FlightInfo>> GetFlightInfo(string flight_icao)
         {
-            Root flightInfo = await _service.AddFlight(flightNumber, airline, date);
+            FlightInfo flightInfo = await _service.AddFlight(flight_icao);
 
             return flightInfo;
         }

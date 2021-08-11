@@ -9,6 +9,7 @@ namespace AzureSkies.Models
     {
         public List<Datum> data { get; set; }
         public Pagination pagination { get; set; }
+        public Error error { get; set; }
     }
     public class Datum
     {
@@ -18,6 +19,11 @@ namespace AzureSkies.Models
         public Arrival arrival { get; set; }
         public Airline airline { get; set; }
         public Flight flight { get; set; }
+    }
+
+    public class Error
+    {
+        public string message { get; set; }
     }
     public class Pagination
     {
