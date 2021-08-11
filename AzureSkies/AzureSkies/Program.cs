@@ -19,18 +19,6 @@ namespace AzureSkies
     {
         public static void Main(string[] args)
         {
-            //string connectionString = Environment.GetEnvironmentVariable("CommunicationServiceConnection");
-
-            //SmsClient smsClient = new SmsClient(connectionString);
-
-            //SmsSendResult sendResult = smsClient.Send(
-            //    from: "+18443976066",
-            //    to: "+12158507772",
-            //    message: "URL incoming"
-            //    );
-
-            //Console.WriteLine($"Sms id: {sendResult.MessageId}");
-
             var host = CreateHostBuilder(args).Build();
 
             UpdateDatabase(host.Services);

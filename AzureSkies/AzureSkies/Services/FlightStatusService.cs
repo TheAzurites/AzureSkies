@@ -34,13 +34,13 @@ namespace AzureSkies.Services
             FlightInfo flightInfo = new()
             {
                 Id = Convert.ToInt32(schema.data[0].flight.number),
-                airlineName = schema.data[0].airline.name,
-                flightDate = schema.data[0].flight_date,
-                departureAirport = schema.data[0].departure.airport,
-                arrivalAirport = schema.data[0].arrival.airport,
-                flightStatus = schema.data[0].flight_status,
-                flightIata = schema.data[0].flight.iata,
-                flightNumber = schema.data[0].flight.number
+                AirlineName = schema.data[0].airline.name,
+                FlightDate = schema.data[0].flight_date,
+                DepartureAirport = schema.data[0].departure.airport,
+                ArrivalAirport = schema.data[0].arrival.airport,
+                FlightStatus = schema.data[0].flight_status,
+                FlightIata = schema.data[0].flight.iata,
+                FlightNumber = schema.data[0].flight.number
             };
 
             return flightInfo;

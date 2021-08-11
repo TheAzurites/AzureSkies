@@ -451,3 +451,4 @@ C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\AzureSki
 C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\ref\AzureSkies.dll
 C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\AzureSkies.pdb
 C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\AzureSkies.genruntimeconfig.cache
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\bin\Release\net5.0\Azure.Messaging.EventGrid.dll

@@ -42,6 +42,7 @@ C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Rele
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\AzureSkies.pdb
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Azure.Communication.Sms.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Azure.Core.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Azure.Messaging.EventGrid.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\System.Net.Http.Formatting.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll

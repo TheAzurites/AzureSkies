@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[1.0.0, )"
             },
+            "Azure.Messaging.EventGrid": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
               "version": "[5.2.7, )"

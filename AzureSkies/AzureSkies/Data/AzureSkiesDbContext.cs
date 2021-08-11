@@ -24,13 +24,13 @@ namespace AzureSkies.Data
                 new FlightInfo
                 {
                     Id = 0001,
-                    flightDate = "2021-08-10",
-                    flightStatus = "active",
-                    airlineName = "Delta Airlines",
-                    departureAirport = "Seattle-Tacoma International Airport",
-                    arrivalAirport = "John F. Kennedy International Airport",
-                    flightIata = "DAL.0001",
-                    flightNumber = "0001"
+                    FlightDate = "2021-08-10",
+                    FlightStatus = "active",
+                    AirlineName = "Delta Airlines",
+                    DepartureAirport = "Seattle-Tacoma International Airport",
+                    ArrivalAirport = "John F. Kennedy International Airport",
+                    FlightIata = "DAL.0001",
+                    FlightNumber = "0001"
                 });
         }
     }

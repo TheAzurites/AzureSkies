@@ -10,13 +10,13 @@ namespace AzureSkies.Models
     {
         [Required]
         public int Id { get; set; }
-        public string flightDate { get; set; }
-        public string flightStatus { get; set; }
-        public string departureAirport { get; set; }
-        public string arrivalAirport { get; set; }
-        public string airlineName { get; set; }
-        public string flightIata { get; set; }
-        public string flightNumber { get; set; }
+        public string FlightDate { get; set; }
+        public string FlightStatus { get; set; }
+        public string DepartureAirport { get; set; }
+        public string ArrivalAirport { get; set; }
+        public string AirlineName { get; set; }
+        public string FlightIata { get; set; }
+        public string FlightNumber { get; set; }
 
     }
 }

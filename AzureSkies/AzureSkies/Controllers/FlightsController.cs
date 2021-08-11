@@ -11,6 +11,10 @@ using AzureSkies.Services;
 using AzureSkies.DTO;
 using AzureSkies.Interfaces;
 using Newtonsoft.Json;
+using Azure;
+using Azure.Communication;
+using Azure.Communication.Sms;
+using Azure.Messaging.EventGrid;
 
 namespace AzureSkies.Controllers
 {
@@ -30,10 +34,27 @@ namespace AzureSkies.Controllers
 
         // GET: api/Flights/4506/Date/2021-08-09
         [HttpPost("incoming")]
-        public  void  GetFlightInfo(SMSSchema incoming)
+        public string GetFlightInfo(IList<SMSRoot> incoming)
         {
             //var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
             //return flightDTO;
+
+            //string connectionString = Environment.GetEnvironmentVariable("CommunicationServiceConnection");
+
+            //SmsClient smsClient = new SmsClient(connectionString);
+
+            //SmsSendResult sendResult = smsClient.Send(
+            //    from: "+18443976066",
+            //    to: "+12158507772",
+            //    message: "URL incoming"
+            //    );
+
+            ValidationDTO secret = new ValidationDTO
+            {
+                validationCode = incoming[0].data.validationCode,
+                validationUrl = incoming[0].data.validationUrl
+            };
+            return secret.validationCode;
         }
 
         // PUT: api/Flights/5
