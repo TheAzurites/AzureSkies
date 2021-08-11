@@ -10,6 +10,7 @@ using AzureSkies.Models;
 using AzureSkies.Services;
 using AzureSkies.DTO;
 using AzureSkies.Interfaces;
+using Newtonsoft.Json;
 
 namespace AzureSkies.Controllers
 {
@@ -28,8 +29,8 @@ namespace AzureSkies.Controllers
         }
 
         // GET: api/Flights/4506/Date/2021-08-09
-        [HttpPost("incoming/{incoming}")]
-        public  void  GetFlightInfo(NewSMSFlightDTO incoming)
+        [HttpPost("incoming")]
+        public  void  GetFlightInfo(SMSSchema incoming)
         {
             //var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
             //return flightDTO;
