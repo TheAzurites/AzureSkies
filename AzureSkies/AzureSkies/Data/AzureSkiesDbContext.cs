@@ -20,29 +20,6 @@ namespace AzureSkies.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<DataFlight>().HasKey(
-                dataFlight => new {dataFlight.DataId, dataFlight.FlightId}
-                );
-
-            modelBuilder.Entity<FlightInfo>().HasData(
-                new FlightInfo
-                {
-                    id = 1
-                });
-
-            modelBuilder.Entity<Models.Data>().HasData(
-                new Models.Data
-                {
-                    id = 1,
-                    flight_date = "2021-08-10",
-                    flight_status = "active",
-                });
-            modelBuilder.Entity<Flight>().HasData(
-                new Flight
-                {
-                    id = 1,
-                    iata = "DL0348"
-                });
         }
     }
 }

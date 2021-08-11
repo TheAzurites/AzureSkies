@@ -9,6 +9,7 @@ using AzureSkies.Data;
 using AzureSkies.Models;
 using AzureSkies.Services;
 using AzureSkies.DTO;
+using AzureSkies.Interfaces;
 
 namespace AzureSkies.Controllers
 {
@@ -17,10 +18,10 @@ namespace AzureSkies.Controllers
     public class FlightsController : ControllerBase
     {
         private readonly AzureSkiesDbContext _context;
-        private readonly FlightStatusService _service;
+        private readonly IFlightStatus _service;
 
         // DI
-        public FlightsController(AzureSkiesDbContext context, FlightStatusService service)
+        public FlightsController(AzureSkiesDbContext context, IFlightStatus service)
         {
             _context = context;
             _service = service;
@@ -32,9 +33,6 @@ namespace AzureSkies.Controllers
         {
             //var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
             //return flightDTO;
-
-            
-
         }
 
         // PUT: api/Flights/5
@@ -71,20 +69,17 @@ namespace AzureSkies.Controllers
         // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpGet("flightNumber/{flightNumber}/airline/{airline}/date/{date}")]
-        public async Task<ActionResult<FlightInfo>> GetFlightInfo(string flightNumber, string airline, string date)
+        public async Task<ActionResult<Root>> GetFlightInfo(string flightNumber, string airline, string date)
         {
-            FlightInfo flightInfo = await _service.AddFlight(flightNumber, airline, date);
-            FlightDTO flightDTO = new()
-            {
-                flightDate = flightInfo.data.flight_date
-            };
+            Root flightInfo = await _service.AddFlight(flightNumber, airline, date);
+
             return flightInfo;
         }
 
         [HttpGet("helloworld")]
-        public string SayHello()
+        public void SayHello()
         {
-            return "Hello There from Controller";
+            Console.WriteLine("Hello World");
         }
 
         // DELETE: api/Flights/5

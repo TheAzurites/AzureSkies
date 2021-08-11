@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace AzureSkies.Services
 {
@@ -13,10 +14,10 @@ namespace AzureSkies.Services
     {
         static HttpClient client = new HttpClient();
 
-        public async Task<FlightInfo> AddFlight(string flightNumber, string airline, string date)
+        public async Task<Root> AddFlight(string flightNumber, string airline, string date)
         {
             //string access_key = "00d536921176e9ab78f646a12b9c15e8";
-            string path = $"http://api.aviationstack.com/v1/flights?access_key=00d536921176e9ab78f646a12b9c15e8&airlineName={airline}&flightNumber={flightNumber}&flightDate={date}";
+            string path = $"http://api.aviationstack.com/v1/flights?access_key=00d536921176e9ab78f646a12b9c15e8&airlineName={airline}&flightNumber={flightNumber}&flightDate={date}&limit=1";
 
               //string path = $"http://api.aviationstack.com/v1/flights?{access_key}&" +
               //              $"airlineName={flight.Airline}&flightNumber={flight.FlightNumber}" +
@@ -25,14 +26,20 @@ namespace AzureSkies.Services
 
             // FlightDTO should be flightInfo when finished. We should create a new DTO from the flightinfo that we 
             // get.
-            FlightInfo flightInfo = new();
+            //Root schema = new();
+            
             HttpResponseMessage response = await client.GetAsync(path);
+            Root schema = new Root();
             if (response.IsSuccessStatusCode)
             {
-                flightInfo = await response.Content.ReadAsAsync<FlightInfo>();
+            schema = await response.Content.ReadAsAsync<Root>();
             }
 
-            return flightInfo;
+            FlightInfo flightInfo = new FlightInfo
+            {
+                Id = Convert.ToInt32(schema.data[0].flight.number),
+            };
+            return schema;
         }
 
         public Task<FlightDTO> GetFlight(NewSMSFlightDTO newSMSFlightDTO)

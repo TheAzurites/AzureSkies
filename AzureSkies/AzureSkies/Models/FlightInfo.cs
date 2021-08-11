@@ -8,9 +8,8 @@ namespace AzureSkies.Models
 {
     public class FlightInfo
     {
-        public int id { get; set; }
         [Required]
-        public Data Data { get; set; }
+        public int Id { get; set; }
 
         //public IList<string> GuestPhoneNumber { get; set; }
     }
