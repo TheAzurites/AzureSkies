@@ -14,15 +14,11 @@ namespace AzureSkies.Services
     {
         static HttpClient client = new HttpClient();
 
-        public async Task<Root> AddFlight(string flightNumber, string airline, string date)
+        public async Task<FlightInfo> AddFlight(string flight_icao)
         {
-            //string access_key = "00d536921176e9ab78f646a12b9c15e8";
-            string path = $"http://api.aviationstack.com/v1/flights?access_key=00d536921176e9ab78f646a12b9c15e8&airlineName={airline}&flightNumber={flightNumber}&flightDate={date}&limit=1";
+            string accessKey = Environment.GetEnvironmentVariable("AVIATION_STACK_API_KEY");
+            string path = $"http://api.aviationstack.com/v1/flights?access_key={accessKey}&flight_icao={flight_icao}&limit=1";
 
-              //string path = $"http://api.aviationstack.com/v1/flights?{access_key}&" +
-              //              $"airlineName={flight.Airline}&flightNumber={flight.FlightNumber}" +
-              //              $"&flightDate={flight.FlightDate}";
-            
 
             // FlightDTO should be flightInfo when finished. We should create a new DTO from the flightinfo that we 
             // get.
@@ -32,14 +28,22 @@ namespace AzureSkies.Services
             Root schema = new Root();
             if (response.IsSuccessStatusCode)
             {
-            schema = await response.Content.ReadAsAsync<Root>();
+                schema = await response.Content.ReadAsAsync<Root>();
             }
 
-            FlightInfo flightInfo = new FlightInfo
+            FlightInfo flightInfo = new()
             {
                 Id = Convert.ToInt32(schema.data[0].flight.number),
+                airlineName = schema.data[0].airline.name,
+                flightDate = schema.data[0].flight_date,
+                departureAirport = schema.data[0].departure.airport,
+                arrivalAirport = schema.data[0].arrival.airport,
+                flightStatus = schema.data[0].flight_status,
+                flightIata = schema.data[0].flight.iata,
+                flightNumber = schema.data[0].flight.number
             };
-            return schema;
+
+            return flightInfo;
         }
 
         public Task<FlightDTO> GetFlight(NewSMSFlightDTO newSMSFlightDTO)
