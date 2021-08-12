@@ -19,6 +19,9 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using Azure.Messaging.EventGrid.SystemEvents;
 using System.Net;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Logging;
 
 namespace AzureSkies.Controllers
 {
@@ -38,91 +41,37 @@ namespace AzureSkies.Controllers
 
         // GET: https://azureskieslatest.azurewebsites.net/api/flights/incoming
         [HttpPost("incoming")]
-        public HttpResponseMessage GetFlightInfo(HttpRequestMessage incoming)
+        public async Task<IActionResult> GetFlightInfo([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest incoming,
+            ILogger log)
         {
-            //var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
-            //return flightDTO;
+            log.LogInformation("C# HTTP trigger function processed a request.");
+            string response = string.Empty;
+            BinaryData events = await BinaryData.FromStreamAsync(incoming.Body);
+            log.LogInformation($"Received events: {events}");
 
-            //string connectionString = Environment.GetEnvironmentVariable("CommunicationServiceConnection");
+            EventGridEvent[] egEvents = EventGridEvent.ParseMany(events);
 
-            //SmsClient smsClient = new SmsClient(connectionString);
-
-            //SmsSendResult sendResult = smsClient.Send(
-            //    from: "+18443976066",
-            //    to: "+12158507772",
-            //    message: "URL incoming"
-            //    );
-            var requestContent = incoming.Content.ReadAsStream();
-
-            EventGridEvent[] egEvents = EventGridEvent.ParseMany(BinaryData.FromStream(requestContent));
-
-            foreach (EventGridEvent egEvent in egEvents)
+            foreach (EventGridEvent eventGridEvent in egEvents)
             {
-                // If the event is a system event, TryGetSystemEventData will return the deserialized system event
-                if (egEvent.TryGetSystemEventData(out object systemEvent))
+                // Handle system events
+                if (eventGridEvent.TryGetSystemEventData(out object eventData))
                 {
-                    switch (systemEvent)
+                    // Handle the subscription validation event
+                    if (eventData is SubscriptionValidationEventData subscriptionValidationEventData)
                     {
-                        case SubscriptionValidationEventData subscriptionValidated:
-                            return incoming.CreateResponse(HttpStatusCode.OK);
-                        case StorageBlobCreatedEventData blobCreated:
-                            Console.WriteLine(blobCreated.BlobType);
-                            break;
-                        // Handle any other system event type
-                        default:
-                            Console.WriteLine(egEvent.EventType);
-                            // we can get the raw Json for the event using Data
-                            Console.WriteLine(egEvent.Data.ToString());
-                            break;
+                        log.LogInformation($"Got SubscriptionValidation event data, validation code: {subscriptionValidationEventData.ValidationCode}, topic: {eventGridEvent.Topic}");
+                        // Do any additional validation (as required) and then return back the below response
+
+                        var responseData = new SubscriptionValidationResponse()
+                        {
+                            ValidationResponse = subscriptionValidationEventData.ValidationCode
+                        };
+                        return new OkObjectResult(responseData);
                     }
                 }
-                else
-                {
-                    //switch (egEvent.EventType)
-                    //{
-                        //case "MyApp.Models.CustomEventType":
-                            //TestPayload deserializedEventData = egEvent.Data.ToObjectFromJson<TestPayload>();
-                            //Console.WriteLine(deserializedEventData.Name);
-                            //break;
-                        // Handle any other custom event type
-                        //default:
-                            Console.Write(egEvent.EventType);
-                            Console.WriteLine(egEvent.Data.ToString());
-                            break;
-                    //}
-                }
-                return null;
             }
+                    return new OkObjectResult(response);
         }
-
-        // PUT: api/Flights/5
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutFlightInfo(int id, FlightInfo flightInfo)
-        //{
-        //    if (id == 0)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    _context.Entry(flightInfo).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!FlightInfoExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
 
         //https://localhost:44359/api/flights/flighticao/dal0380
 
@@ -164,3 +113,48 @@ namespace AzureSkies.Controllers
         //}
     }
 }
+
+
+//var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
+//return flightDTO;
+
+//string connectionString = Environment.GetEnvironmentVariable("CommunicationServiceConnection");
+
+//SmsClient smsClient = new SmsClient(connectionString);
+
+//SmsSendResult sendResult = smsClient.Send(
+//    from: "+18443976066",
+//    to: "+12158507772",
+//    message: "URL incoming"
+//    );
+
+
+
+// PUT: api/Flights/5
+//[HttpPut("{id}")]
+//public async Task<IActionResult> PutFlightInfo(int id, FlightInfo flightInfo)
+//{
+//    if (id == 0)
+//    {
+//        return BadRequest();
+//    }
+//    _context.Entry(flightInfo).State = EntityState.Modified;
+
+//    try
+//    {
+//        await _context.SaveChangesAsync();
+//    }
+//    catch (DbUpdateConcurrencyException)
+//    {
+//        if (!FlightInfoExists(id))
+//        {
+//            return NotFound();
+//        }
+//        else
+//        {
+//            throw;
+//        }
+//    }
+
+//    return NoContent();
+//}
