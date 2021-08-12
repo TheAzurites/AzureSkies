@@ -15,6 +15,10 @@ using Azure;
 using Azure.Communication;
 using Azure.Communication.Sms;
 using Azure.Messaging.EventGrid;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using Azure.Messaging.EventGrid.SystemEvents;
+using System.Net;
 
 namespace AzureSkies.Controllers
 {
@@ -32,9 +36,9 @@ namespace AzureSkies.Controllers
             _service = service;
         }
 
-        // GET: api/Flights/4506/Date/2021-08-09
+        // GET: https://azureskieslatest.azurewebsites.net/api/flights/incoming
         [HttpPost("incoming")]
-        public string GetFlightInfo(IList<SMSRoot> incoming)
+        public HttpResponseMessage GetFlightInfo(HttpRequestMessage incoming)
         {
             //var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
             //return flightDTO;
@@ -48,13 +52,47 @@ namespace AzureSkies.Controllers
             //    to: "+12158507772",
             //    message: "URL incoming"
             //    );
+            var requestContent = incoming.Content.ReadAsStream();
 
-            ValidationDTO secret = new ValidationDTO
+            EventGridEvent[] egEvents = EventGridEvent.ParseMany(BinaryData.FromStream(requestContent));
+
+            foreach (EventGridEvent egEvent in egEvents)
             {
-                validationCode = incoming[0].data.validationCode,
-                validationUrl = incoming[0].data.validationUrl
-            };
-            return secret.validationCode;
+                // If the event is a system event, TryGetSystemEventData will return the deserialized system event
+                if (egEvent.TryGetSystemEventData(out object systemEvent))
+                {
+                    switch (systemEvent)
+                    {
+                        case SubscriptionValidationEventData subscriptionValidated:
+                            return incoming.CreateResponse(HttpStatusCode.OK);
+                        case StorageBlobCreatedEventData blobCreated:
+                            Console.WriteLine(blobCreated.BlobType);
+                            break;
+                        // Handle any other system event type
+                        default:
+                            Console.WriteLine(egEvent.EventType);
+                            // we can get the raw Json for the event using Data
+                            Console.WriteLine(egEvent.Data.ToString());
+                            break;
+                    }
+                }
+                else
+                {
+                    //switch (egEvent.EventType)
+                    //{
+                        //case "MyApp.Models.CustomEventType":
+                            //TestPayload deserializedEventData = egEvent.Data.ToObjectFromJson<TestPayload>();
+                            //Console.WriteLine(deserializedEventData.Name);
+                            //break;
+                        // Handle any other custom event type
+                        //default:
+                            Console.Write(egEvent.EventType);
+                            Console.WriteLine(egEvent.Data.ToString());
+                            break;
+                    //}
+                }
+                return null;
+            }
         }
 
         // PUT: api/Flights/5

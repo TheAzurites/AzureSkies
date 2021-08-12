@@ -7,7 +7,7 @@ namespace AzureSkies.DTO
 {
     public class ValidationDTO
     {
-        public string validationCode { get; set; }
+        public string validationResponse { get; set; }
         public string validationUrl { get; set; }
 
     }
