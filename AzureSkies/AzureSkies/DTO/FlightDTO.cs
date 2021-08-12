@@ -8,12 +8,14 @@ namespace AzureSkies.DTO
     public class FlightDTO
     {
         // Flight {FlightNumber}
-        public string flightDate { get; set; }
+        public string FlightNumber { get; set; }
         // with {Airline}
-        //public string Airline { get; set; }
+        public string Airline { get; set; }
         // on {Date},
-        //public string Date { get; set; }
+        public string Date { get; set; }
         // current status is: {FlightStatus}
-        //public string FlightStatus { get; set; }
+        public string FlightStatus { get; set; }
+
+        public string PhoneNumbers { get; set; }
     }
 }

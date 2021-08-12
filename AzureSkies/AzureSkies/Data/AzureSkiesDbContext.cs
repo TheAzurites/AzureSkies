@@ -9,7 +9,7 @@ namespace AzureSkies.Data
 {
     public class AzureSkiesDbContext : DbContext
     {
-        public DbSet<FlightInfo> FlightInfo { get; set; }
+        public DbSet<FlightInfo> FlightsInfo { get; set; }
 
         public AzureSkiesDbContext(DbContextOptions options) : base(options)
         { 
@@ -20,18 +20,19 @@ namespace AzureSkies.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<FlightInfo>().HasData(
-                new FlightInfo
-                {
-                    Id = 0001,
-                    FlightDate = "2021-08-10",
-                    FlightStatus = "active",
-                    AirlineName = "Delta Airlines",
-                    DepartureAirport = "Seattle-Tacoma International Airport",
-                    ArrivalAirport = "John F. Kennedy International Airport",
-                    FlightIata = "DAL.0001",
-                    FlightNumber = "0001"
-                });
+            //modelBuilder.Entity<FlightInfo>().HasData(
+            //    new FlightInfo
+            //    {
+            //        Id = 0001,
+            //        FlightDate = "2021-08-10",
+            //        FlightStatus = "active",
+            //        AirlineName = "Delta Airlines",
+            //        DepartureAirport = "Seattle-Tacoma International Airport",
+            //        ArrivalAirport = "John F. Kennedy International Airport",
+            //        FlightIcao = "DAL.0001",
+            //        FlightNumber = "0001",
+            //        //PhoneNumbers = {"+12345678"}
+            //    });
         }
     }
 }

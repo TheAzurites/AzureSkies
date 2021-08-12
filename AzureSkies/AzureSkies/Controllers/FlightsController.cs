@@ -11,11 +11,11 @@ using AzureSkies.Services;
 using AzureSkies.DTO;
 using AzureSkies.Interfaces;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Azure;
 using Azure.Communication;
 using Azure.Communication.Sms;
 using Azure.Messaging.EventGrid;
-using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using Azure.Messaging.EventGrid.SystemEvents;
 using System.Net;
@@ -41,69 +41,42 @@ namespace AzureSkies.Controllers
 
         // GET: https://azureskieslatest.azurewebsites.net/api/flights/incoming
         [HttpPost("incoming")]
-        public async Task<IActionResult> GetFlightInfo([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest incoming,
-            ILogger log)
+        public EventGridEvent Incoming([FromBody]object request)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-            string response = string.Empty;
-            BinaryData events = await BinaryData.FromStreamAsync(incoming.Body);
-            log.LogInformation($"Received events: {events}");
+            //Deserializing the request 
+            var eventGridEvent = JsonConvert.DeserializeObject<EventGridEvent[]>(request.ToString())
+                .FirstOrDefault();
+            //var data = eventGridEvent.Data as JObject;
 
-            EventGridEvent[] egEvents = EventGridEvent.ParseMany(events);
-
-            foreach (EventGridEvent eventGridEvent in egEvents)
-            {
-                // Handle system events
-                if (eventGridEvent.TryGetSystemEventData(out object eventData))
-                {
-                    // Handle the subscription validation event
-                    if (eventData is SubscriptionValidationEventData subscriptionValidationEventData)
-                    {
-                        log.LogInformation($"Got SubscriptionValidation event data, validation code: {subscriptionValidationEventData.ValidationCode}, topic: {eventGridEvent.Topic}");
-                        // Do any additional validation (as required) and then return back the below response
-
-                        var responseData = new SubscriptionValidationResponse()
-                        {
-                            ValidationResponse = subscriptionValidationEventData.ValidationCode
-                        };
-                        return new OkObjectResult(responseData);
-                    }
-                }
+            _service.AddFlight(eventGridEvent.Data.Message, eventGridEvent.Data.From);
+            eventGridEvent.validationResponse = eventGridEvent.Data.validationCode;
+            return eventGridEvent;
             }
-                    return new OkObjectResult(response);
-        }
 
         //https://localhost:44359/api/flights/flighticao/dal0380
 
         // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpGet("flighticao/{flight_icao}")]
-        public async Task<ActionResult<FlightInfo>> GetFlightInfo(string flight_icao)
-        {
-            FlightInfo flightInfo = await _service.AddFlight(flight_icao);
+        //[HttpGet("flighticao/{flight_icao}")]
+        //public async Task<ActionResult<FlightInfo>> GetFlightInfo(string flight_icao)
+        //{
+        //    FlightInfo flightInfo = await _service.AddFlight(flight_icao);
 
-            return flightInfo;
-        }
+        //    return flightInfo;
+        //}
 
-        [HttpGet("helloworld")]
-        public void SayHello()
+        [HttpPut("outgoing")]
+        public async Task<ActionResult<IEnumerable<FlightDTO>>> GetFlights()
         {
-            Console.WriteLine("Hello World");
+            var list = await _service.GetFlights();
+            return Ok(list);
         }
 
         // DELETE: api/Flights/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFlightInfo(int id)
         {
-            var flightInfo = await _context.FlightInfo.FindAsync(id);
-            if (flightInfo == null)
-            {
-                return NotFound();
-            }
-
-            _context.FlightInfo.Remove(flightInfo);
-            await _context.SaveChangesAsync();
-
+            await _service.Delete(id);
             return NoContent();
         }
 
@@ -114,19 +87,27 @@ namespace AzureSkies.Controllers
     }
 }
 
+public class EventGridEvent
+{
+    public string Id { get; set; }
+    public string EventType { get; set; }
+    public string Subject { get; set; }
+    public DateTime EventTime { get; set; }
+    public Data Data { get; set; }
+    public string validationResponse { get; set; }
+}
 
-//var flightDTO = await _service.GetFlight(FlightNumber, FlightDate);
+public class Data
+{
+    public string From { get; set; }
+    public string Message { get; set; }
+    public string validationCode { get; set; }
+}
+
+
+//var flightDTO = await _service.GetFlights();
 //return flightDTO;
 
-//string connectionString = Environment.GetEnvironmentVariable("CommunicationServiceConnection");
-
-//SmsClient smsClient = new SmsClient(connectionString);
-
-//SmsSendResult sendResult = smsClient.Send(
-//    from: "+18443976066",
-//    to: "+12158507772",
-//    message: "URL incoming"
-//    );
 
 
 
@@ -157,4 +138,56 @@ namespace AzureSkies.Controllers
 //    }
 
 //    return NoContent();
+//}
+
+//    log.LogInformation("C# HTTP trigger function processed a request.");
+//    string response = string.Empty;
+//    BinaryData events = await BinaryData.FromStreamAsync(incoming.Body);
+//    log.LogInformation($"Received events: {events}");
+
+//    EventGridEvent[] egEvents = EventGridEvent.ParseMany(events);
+
+//    foreach (EventGridEvent eventGridEvent in egEvents)
+//    {
+//        // Handle system events
+//        if (eventGridEvent.TryGetSystemEventData(out object eventData))
+//        {
+//            // Handle the subscription validation event
+//            if (eventData is SubscriptionValidationEventData subscriptionValidationEventData)
+//            {
+//                log.LogInformation($"Got SubscriptionValidation event data, validation code: {subscriptionValidationEventData.ValidationCode}, topic: {eventGridEvent.Topic}");
+//                // Do any additional validation (as required) and then return back the below response
+
+//                var responseData = new SubscriptionValidationResponse()
+//                {
+//                    ValidationResponse = subscriptionValidationEventData.ValidationCode
+//                };
+//                return new OkObjectResult(responseData);
+//            }
+//        }
+//    }
+//return new OkObjectResult(response);
+
+
+
+//// Validate whether EventType is of "Microsoft.EventGrid.SubscriptionValidationEvent"
+//if (string.Equals(eventGridEvent.EventType, Constants.SubscriptionValidationEvent, StringComparison.OrdinalIgnoreCase))
+//{
+//    var eventData = data.ToObject<SubscriptionValidationEventData>();
+//    var responseData = new SubscriptionValidationResponseData
+//    {
+//        ValidationResponse = eventData.ValidationCode
+//    };
+
+//    if (responseData.ValidationResponse != null)
+//    {
+//        return JObject.FromObject(responseData);
+//    }
+//}
+//else
+//{
+//    // Handle your custom event
+//    //var eventData = data.ToObject<CustomData>();
+//    //var customEvent = CustomEvent<CustomData>.CreateCustomEvent(eventData);
+//    return JObject.FromObject(customEvent);
 //}
