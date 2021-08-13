@@ -94,35 +94,36 @@ namespace AzureSkies.Services
         public async Task GetFlights()
         {
             string connectionString = Environment.GetEnvironmentVariable("CommunicationServiceConnection");
-
             SmsClient smsClient = new SmsClient(connectionString);
 
             string accessKey = Environment.GetEnvironmentVariable("AVIATION_STACK_API_KEY");
             IList<FlightInfo> flightsToUpdate = await _context.FlightsInfo.ToListAsync();
-            
-            foreach(FlightInfo flight in flightsToUpdate)
-            {
-                string icao = flight.FlightIcao;
-                string path = $"http://api.aviationstack.com/v1/flights?access_key={accessKey}&flight_icao={icao}&limit=1";
-
-                HttpResponseMessage response = await client.GetAsync(path);
-                Root schema = new Root();
-                if (response.IsSuccessStatusCode)
+            if (flightsToUpdate != null){
+                foreach(FlightInfo flight in flightsToUpdate)
                 {
-                    schema = await response.Content.ReadAsAsync<Root>();
-                    if (schema.data[0].flight_status == "cancelled" || schema.data[0].flight_status == "landed")
-                    {
-                        SmsSendResult sendResult = smsClient.Send(
-                        from: "+18443976066",
-                        to: flight.PhoneNumbers,
-                        message: ($"Flight {flight.FlightDate} with {flight.AirlineName} on {flight.FlightNumber}\n." +
-                        $"Depart from: {flight.DepartureAirport}.\n" +
-                        $"Arrive at: {flight.ArrivalAirport}.\n" +
-                        $"Current status is: {schema.data[0].flight_status}. You are now unsubscribed from texts.")
-                        );
-                        await Delete(flight.Id);
+                    string icao = flight.FlightIcao;
+                    string path = $"http://api.aviationstack.com/v1/flights?access_key={accessKey}&flight_icao={icao}&limit=1";
 
-                        _context.Entry(flight).State = EntityState.Deleted;
+                    HttpResponseMessage response = await client.GetAsync(path);
+                    Root schema = new Root();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        schema = await response.Content.ReadAsAsync<Root>();
+                        if (schema.data[0].flight_status == "cancelled" || schema.data[0].flight_status == "landed")
+                        {
+                            SmsSendResult sendResult = smsClient.Send(
+                            from: "+18443976066",
+                            to: flight.PhoneNumbers,
+                            message: ($"Flight {flight.FlightDate} with {flight.AirlineName} on {flight.FlightNumber}\n." +
+                            $"Depart from: {flight.DepartureAirport}.\n" +
+                            $"Arrive at: {flight.ArrivalAirport}.\n" +
+                            $"Current status is: {schema.data[0].flight_status}. You are now unsubscribed from texts.\n" +
+                            $"Thank you for using Azure Skies.")
+                            );
+                            await Delete(flight.Id);
+
+                            _context.Entry(flight).State = EntityState.Deleted;
+                        }
                     }
                 }
             }
