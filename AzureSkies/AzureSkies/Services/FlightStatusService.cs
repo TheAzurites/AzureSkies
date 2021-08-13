@@ -50,10 +50,15 @@ namespace AzureSkies.Services
 
             if (schema.data.Count <= 0)
             {
+                SmsSendResult sendBadRequest = smsClient.Send(
+                from: "+18443976066",
+                to: phoneNumber,
+                message: "The flight number that you attempted to enter was not found in the database."
+                );
+                return;
             }
             FlightInfo flightInfo = new()
             {
-                Id = Convert.ToInt32(schema.data[0].flight.number),
                 AirlineName = schema.data[0].airline.name,
                 FlightDate = schema.data[0].flight_date,
                 DepartureAirport = schema.data[0].departure.airport,
@@ -61,7 +66,7 @@ namespace AzureSkies.Services
                 FlightStatus = schema.data[0].flight_status,
                 FlightIcao = schema.data[0].flight.icao,
                 FlightNumber = schema.data[0].flight.number,
-                PhoneNumbers = message
+                PhoneNumbers = phoneNumber
             };
 
             // Saving flightInfo to DbContext for later use while accessing

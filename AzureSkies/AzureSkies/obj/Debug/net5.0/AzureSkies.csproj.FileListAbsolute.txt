@@ -311,3 +311,12 @@ C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\bin\Debu
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\NgrokAspNetCore.Lib.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.WebApiCompatShim.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.Azure.WebJobs.Host.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.Azure.WebJobs.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.Azure.WebJobs.Extensions.Http.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\bin\Debug\net5.0\NgrokAspNetCore.Lib.dll
+C:\Users\locoq\repo\AzureSkies\AzureSkies\AzureSkies\obj\Debug\net5.0\AzureSkies.MvcApplicationPartsAssemblyInfo.cs
