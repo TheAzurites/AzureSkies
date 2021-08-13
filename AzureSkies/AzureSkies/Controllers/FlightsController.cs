@@ -41,31 +41,19 @@ namespace AzureSkies.Controllers
 
         // GET: https://azureskieslatest.azurewebsites.net/api/flights/incoming
         [HttpPost("incoming")]
-        public EventGridEvent Incoming([FromBody]object request)
+        public async Task<ActionResult<EventGridEvent>> Incoming([FromBody]object request)
         {
             //Deserializing the request 
             var eventGridEvent = JsonConvert.DeserializeObject<EventGridEvent[]>(request.ToString())
                 .FirstOrDefault();
             //var data = eventGridEvent.Data as JObject;
 
-            _service.AddFlight(eventGridEvent.Data.Message, eventGridEvent.Data.From);
+            await _service.AddFlight(eventGridEvent.Data.Message, eventGridEvent.Data.From);
             eventGridEvent.validationResponse = eventGridEvent.Data.validationCode;
-            return eventGridEvent;
+            return Ok(eventGridEvent);
             }
 
-        //https://localhost:44359/api/flights/flighticao/dal0380
-
-        // POST: api/Flights
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpGet("flighticao/{flight_icao}")]
-        //public async Task<ActionResult<FlightInfo>> GetFlightInfo(string flight_icao)
-        //{
-        //    FlightInfo flightInfo = await _service.AddFlight(flight_icao);
-
-        //    return flightInfo;
-        //}
-
-        [HttpPut("outgoing")]
+        [HttpGet("outgoing")]
         public async Task<ActionResult<IEnumerable<FlightDTO>>> GetFlights()
         {
             var list = await _service.GetFlights();
@@ -80,10 +68,6 @@ namespace AzureSkies.Controllers
             return NoContent();
         }
 
-        //private bool FlightInfoExists(int id)
-        //{
-        //    return _context.FlightInfo.Any(e => e.Id == id);
-        //}
     }
 }
 

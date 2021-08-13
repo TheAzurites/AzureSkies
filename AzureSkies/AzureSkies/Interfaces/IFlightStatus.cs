@@ -1,5 +1,6 @@
 ﻿using AzureSkies.DTO;
 using AzureSkies.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace AzureSkies.Interfaces
         // Get Flight data from API
         // public Task<FlightDTO> GetFlight(NewSMSFlightDTO newSMSFlightDTO);
 
-        public void AddFlight(string message, string phoneNumber);
+        public Task AddFlight(string message, string phoneNumber);
 
         public Task<IList<FlightDTO>> GetFlights();
 
