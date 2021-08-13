@@ -15,7 +15,8 @@ namespace AzureSkies.DTO
         public string Date { get; set; }
         // current status is: {FlightStatus}
         public string FlightStatus { get; set; }
-
         public string PhoneNumbers { get; set; }
+        public string Arrival { get; set; }
+        public string Departure { get; set; }
     }
 }

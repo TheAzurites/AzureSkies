@@ -15,7 +15,7 @@ namespace AzureSkies.Interfaces
 
         public Task AddFlight(string message, string phoneNumber);
 
-        public Task<IList<FlightDTO>> GetFlights();
+        public Task GetFlights();
 
         public Task Delete(int id);
     }

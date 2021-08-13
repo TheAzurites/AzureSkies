@@ -9,6 +9,5 @@ namespace AzureSkies.DTO
     {
         public string validationResponse { get; set; }
         public string validationUrl { get; set; }
-
     }
 }

@@ -56,10 +56,9 @@ namespace AzureSkies.Controllers
             }
 
         [HttpGet("outgoing")]
-        public async Task<ActionResult<IEnumerable<FlightDTO>>> GetFlights()
+        public async Task GetFlights()
         {
-            var list = await _service.GetFlights();
-            return Ok(list);
+            await _service.GetFlights();
         }
 
         // DELETE: api/Flights/5

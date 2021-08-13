@@ -76,15 +76,12 @@ namespace AzureSkies.Services
             SmsSendResult sendResult = smsClient.Send(
                 from: "+18443976066",
                 to: phoneNumber,
-                message: ($"Welcome to Azure Skies. Flight {flightInfo.FlightIcao} with {flightInfo.AirlineName} on {flightInfo.FlightDate}" +
-                $" current status is: {flightInfo.FlightStatus}. You are now subscribed to automatic flight updates.")
+                message: ($"Welcome to Azure Skies. Flight {flightInfo.FlightIcao} with {flightInfo.AirlineName} on {flightInfo.FlightDate}.\n" +
+                    $"Depart from: {flightInfo.DepartureAirport}.\n" +
+                    $"Arrive at: {flightInfo.ArrivalAirport}.\n" +
+                $"Current status is: {flightInfo.FlightStatus}. You are now subscribed to automatic flight updates.")
                 );
         }
-
-        //public Task<FlightDTO> GetFlight(NewSMSFlightDTO newSMSFlightDTO)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public async Task Delete(int id)
         {
@@ -94,7 +91,7 @@ namespace AzureSkies.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IList<FlightDTO>> GetFlights()
+        public async Task GetFlights()
         {
             string connectionString = Environment.GetEnvironmentVariable("CommunicationServiceConnection");
 
@@ -118,12 +115,15 @@ namespace AzureSkies.Services
                         SmsSendResult sendResult = smsClient.Send(
                         from: "+18443976066",
                         to: flight.PhoneNumbers,
-                        message: ($"Flight {flight.FlightDate} with {flight.AirlineName} on {flight.FlightNumber}" +
-                        $" current status is: {flight.FlightStatus}. You are now unsubscribed from texts.")
+                        message: ($"Flight {flight.FlightDate} with {flight.AirlineName} on {flight.FlightNumber}\n." +
+                        $"Depart from: {flight.DepartureAirport}.\n" +
+                        $"Arrive at: {flight.ArrivalAirport}.\n" +
+                        $"Current status is: {schema.data[0].flight_status}. You are now unsubscribed from texts.")
                         );
                         await Delete(flight.Id);
+
+                        _context.Entry(flight).State = EntityState.Deleted;
                     }
-                _context.Entry(flight).State = EntityState.Deleted;
                 }
             }
 
@@ -134,19 +134,22 @@ namespace AzureSkies.Services
                     Airline = flight.AirlineName,
                     Date = flight.FlightDate,
                     FlightStatus = flight.FlightStatus,
-                    PhoneNumbers = flight.PhoneNumbers
+                    PhoneNumbers = flight.PhoneNumbers,
+                    Arrival = flight.ArrivalAirport,
+                    Departure = flight.DepartureAirport
                 }).ToListAsync();
 
             foreach(FlightDTO flight in list)
             {
-                    SmsSendResult sendResult = smsClient.Send(
-                        from: "+18443976066",
-                        to: flight.PhoneNumbers,
-                        message: ($"Flight {flight.Date} with {flight.Airline} on {flight.FlightNumber}" +
-                        $" current status is: {flight.FlightStatus}.")
-                        );
+                SmsSendResult sendResult = smsClient.Send(
+                    from: "+18443976066",
+                    to: flight.PhoneNumbers,
+                    message: ($"Flight {flight.FlightNumber} with {flight.Airline} on {flight.Date}\n" +
+                    $"Depart from: {flight.Departure}\n" +
+                    $"Arrive at: {flight.Arrival}\n" +
+                    $"current status is: {flight.FlightStatus}.")
+                    );
             }
-            return list;
         }
     }
 }
