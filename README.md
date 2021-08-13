@@ -43,7 +43,7 @@ Text your flight number icao to Azure Skies, receive an immediate status of the 
 * C# 9.0
 * .Net 5
 * Entity Framework
-* [AviationStack APi](https://aviationstack.com/documentation)
+* [AviationStack API](https://aviationstack.com/documentation)
 * [Azure](https://azure.microsoft.com/en-us/features/azure-portal/)
 * [Insomnia](https://insomnia.rest/)
 * [ngrok](https://ngrok.com/)
