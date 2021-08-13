@@ -42,9 +42,15 @@ C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Rele
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\AzureSkies.pdb
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Azure.Communication.Sms.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Azure.Core.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Azure.Messaging.EventGrid.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\System.Net.Http.Formatting.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.WebApiCompatShim.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.Azure.WebJobs.Host.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.Azure.WebJobs.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.Azure.WebJobs.Extensions.Http.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.CodeAnalysis.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.CodeAnalysis.CSharp.dll
@@ -52,11 +58,13 @@ C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Rele
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.CodeAnalysis.Workspaces.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.Identity.Client.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
@@ -73,6 +81,7 @@ C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Rele
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.Bson.dll
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\NgrokAspNetCore.Lib.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\System.Composition.AttributedModel.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\System.Composition.Convention.dll
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\System.Composition.Hosting.dll
