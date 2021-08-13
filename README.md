@@ -20,20 +20,20 @@ By: Jona Brown, Benjamin Ibarra, Joel Connell
 * [License](#license)
 
 ## General Information
-1. Summary of idea.
+1. Summary of idea.  
 
-Flight Tracker API - Azure Skies.
-
-
-Track a flight by Texting the flight's icao number to Azure Skies. Aftering texting a valid flight icao number, you will be Subscribed to Azure Skies flight status notification service for the duration of the flight. You will receive automated text messages whenever your flight's status changes from active to "landed", or "cancelled".
+Flight Tracker API - Azure Skies.  
 
 
-2. What problem or pain point does it solve?
-
-If you have ever wanted to keep track of when a flight is boarding, taking off and landing without needing to visit any website or constantly open an app? Azure skies will be able to send you automated text messages based on flight status. This means you will always be able to stay up to date without the click of a button, no matter which airline you (or they) are traveling with.
+Track a flight by Texting the flight's icao number to Azure Skies. Aftering texting a valid flight icao number, you will be Subscribed to Azure Skies flight status notification service for the duration of the flight. You will receive automated text messages whenever your flight's status changes from active to "landed", or "cancelled".  
 
 
-3. Minimum Viable Product (MVP) definition?
+2. What problem or pain point does it solve?  
+
+If you have ever wanted to keep track of when a flight is boarding, taking off and landing without needing to visit any website or constantly open an app? Azure skies will be able to send you automated text messages based on flight status. This means you will always be able to stay up to date without the click of a button, no matter which airline you (or they) are traveling with.  
+
+
+3. Minimum Viable Product (MVP) definition?  
 
 
 Text your flight number icao to Azure Skies, receive an immediate status of the flight, and be subscribed to Azure Skies notifications for the duration of the flight.
