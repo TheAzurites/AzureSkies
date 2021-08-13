@@ -25,28 +25,28 @@ By: Jona Brown, Benjamin Ibarra, Joel Connell
 Flight Tracker API - Azure Skies.
 
 
-Track a flight by entering in the name of the flight carrier, flight number and date. This will set your phone up for text messages on whether the flight is taking off, landing or boarding.
+Track a flight by Texting the flight's icao number to Azure Skies. Aftering texting a valid flight icao number, you will be Subscribed to Azure Skies flight status notification service for the duration of the flight. You will recieve automatated text messages whenever your flight's status changes from active to "landed", or "cancelled".
 
 
 2. What problem or pain point does it solve?
 
-Have you ever wanted to keep track of when a flight is boarding, taking off and landing without needing to visit any website or consistently open an app? Azure skies will be able to send you automated text messages based on flight status. This means you will always be able to stay up to date without the click of a button, no matter which airline you (or they) are traveling with.
+If you have ever wanted to keep track of when a flight is boarding, taking off and landing without needing to visit any website or constantly open an app? Azure skies will be able to send you automated text messages based on flight status. This means you will always be able to stay up to date without the click of a button, no matter which airline you (or they) are traveling with.
 
 
 3. Minimum Viable Product (MVP) definition?
 
 
-Text your flight number (maybe flight carrier), as well as the date of the flight and receive an immediate status of the flight as well as the duration of the flight.
+Text your flight number icao to Azure Skies, receive an immediate status of the flight, and be subscribed to Azure Skies notifications for the duration of the flight.
 
 ## Technologies Used
 
 * C# 9.0
 * .Net 5
-* FLight API
-* Azure
 * Entity Framework
-* Insomnia
-* Swagger
+* [AviationStack APi](https://aviationstack.com/documentation)
+* [Azure](https://azure.microsoft.com/en-us/features/azure-portal/)
+* [Insomnia](https://insomnia.rest/)
+* [ngrok](https://ngrok.com/)
 
 ## Features
 
@@ -61,28 +61,54 @@ Text your flight number (maybe flight carrier), as well as the date of the fligh
 ## Architecture
 ![AzureSkies](./images/AzureSkies.png)
 
-## Setup
-
-Nothing to set up yet.
-
 ## Usage
-Open source project that utilizes APIs in a meaningful way to communicate data.
+Open source project that utilizes APIs in a meaningful way to communicate data. Specifically automated flight status messages from API to user, cutting out the need to log into an app, scour for an e-mail for flight details, or logging into a website. Straight to user autmated flight notifications
 
 ## Project Status
 
-In Progress
+### Day One: 
+- Acquired AviationStack API Key
+- Established Azure Account, ResourceGroup, and Azure communications account along with a phone number to handle outbound and inbound messages
+- Created the Azure Skies principal web app
+- Preliminary Models, interfaces, DTO's, and Services created
+- implemented Azure.Communications & Azure.Communications.SMS allowing to send our first message from out web app
+
+### Day Two:
+- Established proper AviationStack API requests from Web App
+- Refined Models, Interfaces, DTO's, and Services
+- Created Controllers and established HTTP endpoints
+- Created preliminary Azure Function trigger to ping the AviationStack Api and update our local database of tracked flights
+- Added Azure EventGrids to our Azure communications Service
+- Deep dive into Azure EventGrid and Webhook documents
+
+### Day Three:
+- Finalized Azure function trigger
+- Finalized Models, Schemas, DTO's
+- Determined services and controller logic between taking in Text message response from EventGrid
+- Determined services and controller logic to create models, DTO's, and send messages back to user
+
+### Day Four:
+- Finally establish proper custome HTTP endpoints for Azure Evengrid and Webhook to recieve Text message data from users
+- Used ngrok and insomnia to test and debug webhook validation and handshake
+- Succesfully validated Webhook handshake, and started making proper use of EventGrid responses
+- SMS inbound messages can now be parsed and used to query AviationStack and respond to user with flight status notifications
+- Database Logic was establish to filter through and ping for updates only for flights with in Azure Skies database
+- Reached MVP, Azure Skies deployed and working
 
 ## Room for Improvement
 
-To do: Everything...
+Automated time until flight arrival messages
 
 ## Acknowledgements
+John Cokos  
+Edward Younskevicius  
+Kjell Overholt  
 
 ## Contact
 Feel free to access us across these fine hotlinks -
-Jona Brown - https://www.linkedin.com/in/jona-brown-a50946175/
-Benjamin Ibarra - https://www.linkedin.com/in/ibarraben/
-https://www.linkedin.com/in/joel-connell-6a8757210/
+Jona Brown - [https://www.linkedin.com/in/jona-brown-a50946175/](https://www.linkedin.com/in/jona-brown-a50946175/)
+Benjamin Ibarra - [https://www.linkedin.com/in/ibarraben/](https://www.linkedin.com/in/ibarraben/)
+Joel Connell - [https://www.linkedin.com/in/joel-connell-6a8757210/](https://www.linkedin.com/in/joel-connell-6a8757210/)
 
 ## License
 
