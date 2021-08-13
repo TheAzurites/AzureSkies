@@ -69,12 +69,9 @@ namespace AzureSkies.Services
                 PhoneNumbers = phoneNumber
             };
 
-            if (schema.data != null)
-            {
             // Saving flightInfo to DbContext for later use while accessing
             _context.Entry(flightInfo).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            }
 
             SmsSendResult sendResult = smsClient.Send(
                 from: "+18443976066",
@@ -126,7 +123,7 @@ namespace AzureSkies.Services
                         );
                         await Delete(flight.Id);
                     }
-                _context.Entry(flight).State = EntityState.Modified;
+                _context.Entry(flight).State = EntityState.Deleted;
                 }
             }
 
