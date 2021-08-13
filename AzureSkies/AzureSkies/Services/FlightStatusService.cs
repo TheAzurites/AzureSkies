@@ -48,15 +48,6 @@ namespace AzureSkies.Services
                 );
             }
 
-            //if (schema.data.Count <= 0)
-            //{
-            //    SmsSendResult sendBadRequest = smsClient.Send(
-            //    from: "+18443976066",
-            //    to: phoneNumber,
-            //    message: "The flight number that you attempted to enter was not found in the database."
-            //    );
-            //    return;
-            //}
             FlightInfo flightInfo = new()
             {
                 AirlineName = schema.data[0].airline.name,
@@ -114,7 +105,7 @@ namespace AzureSkies.Services
                             SmsSendResult sendResult = smsClient.Send(
                             from: "+18443976066",
                             to: flight.PhoneNumbers,
-                            message: ($"Flight {flight.FlightDate} with {flight.AirlineName} on {flight.FlightNumber}\n." +
+                            message: ($"Flight {flight.FlightNumber} with {flight.AirlineName} on {flight.FlightDate}.\n" +
                             $"Depart from: {flight.DepartureAirport}.\n" +
                             $"Arrive at: {flight.ArrivalAirport}.\n" +
                             $"Current status is: {schema.data[0].flight_status}. You are now unsubscribed from texts.\n" +
