@@ -96,10 +96,10 @@ Edward Younskevicius
 Kjell Overholt  
 
 ## Contact
-Feel free to access us across these fine hotlinks -
-Jona Brown - [https://www.linkedin.com/in/jona-brown-a50946175/](https://www.linkedin.com/in/jona-brown-a50946175/)
-Benjamin Ibarra - [https://www.linkedin.com/in/ibarraben/](https://www.linkedin.com/in/ibarraben/)
-Joel Connell - [https://www.linkedin.com/in/joel-connell-6a8757210/](https://www.linkedin.com/in/joel-connell-6a8757210/)
+Feel free to access us across these fine hotlinks -  
+Jona Brown - [https://www.linkedin.com/in/jona-brown-a50946175/](https://www.linkedin.com/in/jona-brown-a50946175/)  
+Benjamin Ibarra - [https://www.linkedin.com/in/ibarraben/](https://www.linkedin.com/in/ibarraben/)  
+Joel Connell - [https://www.linkedin.com/in/joel-connell-6a8757210/](https://www.linkedin.com/in/joel-connell-6a8757210/)  
 
 ## License
 
