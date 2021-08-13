@@ -44,19 +44,19 @@ namespace AzureSkies.Services
             SmsSendResult sendBadRequest = smsClient.Send(
                 from: "+18443976066",
                 to: phoneNumber,
-                message: "The flight number that you attempted to enter was not found in the database."         
+                message: "Azure Skies is currently under maintenance. Please try again later."         
                 );
             }
 
-            if (schema.data.Count <= 0)
-            {
-                SmsSendResult sendBadRequest = smsClient.Send(
-                from: "+18443976066",
-                to: phoneNumber,
-                message: "The flight number that you attempted to enter was not found in the database."
-                );
-                return;
-            }
+            //if (schema.data.Count <= 0)
+            //{
+            //    SmsSendResult sendBadRequest = smsClient.Send(
+            //    from: "+18443976066",
+            //    to: phoneNumber,
+            //    message: "The flight number that you attempted to enter was not found in the database."
+            //    );
+            //    return;
+            //}
             FlightInfo flightInfo = new()
             {
                 AirlineName = schema.data[0].airline.name,
@@ -69,9 +69,12 @@ namespace AzureSkies.Services
                 PhoneNumbers = phoneNumber
             };
 
+            if (schema.data != null)
+            {
             // Saving flightInfo to DbContext for later use while accessing
             _context.Entry(flightInfo).State = EntityState.Added;
             await _context.SaveChangesAsync();
+            }
 
             SmsSendResult sendResult = smsClient.Send(
                 from: "+18443976066",

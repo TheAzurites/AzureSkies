@@ -47,8 +47,10 @@ namespace AzureSkies.Controllers
             var eventGridEvent = JsonConvert.DeserializeObject<EventGridEvent[]>(request.ToString())
                 .FirstOrDefault();
             //var data = eventGridEvent.Data as JObject;
-
+            if (eventGridEvent.Data.From != null)
+            {
             await _service.AddFlight(eventGridEvent.Data.Message, eventGridEvent.Data.From);
+            }
             eventGridEvent.validationResponse = eventGridEvent.Data.validationCode;
             return Ok(eventGridEvent);
             }
