@@ -35,7 +35,6 @@ namespace AzureSkies.Controllers
         // DI
         public FlightsController(AzureSkiesDbContext context, IFlightStatus service)
         {
-            _context = context;
             _service = service;
         }
 
