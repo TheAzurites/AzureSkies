@@ -89,6 +89,7 @@ Open source project that utilizes APIs in a meaningful way to communicate data. 
 ## Room for Improvement
 
 - Automated time until flight arrival messages
+- Allow the phone number to view every flight that they are associated with.
 
 ## Acknowledgements
 John Cokos  
