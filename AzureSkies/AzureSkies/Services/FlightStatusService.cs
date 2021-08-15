@@ -128,7 +128,7 @@ namespace AzureSkies.Services
                     SmsSendResult sendStop = smsClient.Send(
                     from: "+18443976066",
                     to: phoneNumber,
-                    message: ($"Unsubscribed from flight updates for flight: {flight.FlightIcao}.\n" +
+                    message: ($"Unsubscribed from updates for flight: {flight.FlightIcao}.\n" +
                     $"Thank you for using Azure Skies.")
                     );
                     await Delete(flight.Id);
@@ -188,6 +188,10 @@ namespace AzureSkies.Services
                             await Delete(flight.Id);
 
                             _context.Entry(flight).State = EntityState.Deleted;
+                        }
+                        else if (schema.data[0].flight_status == flight.FlightStatus)
+                        {
+                            return;
                         }
                     }
                 }
