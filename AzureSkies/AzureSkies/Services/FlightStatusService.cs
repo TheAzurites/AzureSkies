@@ -21,6 +21,7 @@ namespace AzureSkies.Services
 
         public FlightStatusService(AzureSkiesDbContext context)
         {
+            //Dependency Injection for the Database. References the database properly.
             _context = context;
         }
 
@@ -33,6 +34,7 @@ namespace AzureSkies.Services
             Regex rg = new Regex(@"[a-zA-Z]{2}[a-zA-Z]?[0-9]{3}[0-9]?");
             if (message.ToLower() == "landed")
             {
+                // Perform the function and return afterward.
                 await IfMsgIsLanded(phoneNumber);
                 return;
             }
@@ -42,7 +44,7 @@ namespace AzureSkies.Services
                     from: "+18443976066",
                     to: phoneNumber,
                     message: "Please enter a valid Flight ICAO Number.\n" +
-                    "Accepted Formats: ABC123, ABC1234, AB123, AB1234\n"
+                    "Accepted formats are: ABC123, ABC1234, AB123, AB1234\n"
                     );
                 return;
             }
@@ -116,11 +118,15 @@ namespace AzureSkies.Services
 
         public async Task IfMsgIsLanded(string phoneNumber)
         {
+            // Creating an instance of the SMS client - used to communicate with the phone sending out the message.
             string connectionString = Environment.GetEnvironmentVariable("CommunicationServiceConnection");
             SmsClient smsClient = new SmsClient(connectionString);
 
             bool found = false;
+
+            // Retrieve all flights from database and keep in Iterable list of type FlightInfo.
             IList<FlightInfo> flights = await _context.FlightsInfo.ToListAsync();
+            // For every flight in the iterable list of flights perform below operation.
             foreach(FlightInfo flight in flights)
             {
                 if (flight.PhoneNumbers == phoneNumber)
@@ -150,8 +156,13 @@ namespace AzureSkies.Services
 
         public async Task Delete(int id)
         {
+            // Finds the flight based on flight id, which is received from database.
             FlightInfo flight = await _context.FlightsInfo.FindAsync(id);
+
+            // Delete associated flight.
             _context.Entry(flight).State = EntityState.Deleted;
+
+            // Save the changes to the database.
             await _context.SaveChangesAsync();
         }
 
@@ -191,10 +202,12 @@ namespace AzureSkies.Services
                         }
                         else if (schema.data[0].flight_status == flight.FlightStatus)
                         {
+                            // The status has not changed, therefore do not send the data to the user.
                             return;
                         }
                     }
                 }
+
                 IList<FlightDTO> list = await _context.FlightsInfo
                     .Select(flight => new FlightDTO
                     {

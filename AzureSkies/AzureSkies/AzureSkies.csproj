@@ -24,4 +24,8 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\AzureSkiesLogo.PNG" />
+  </ItemGroup>
+
 </Project>

@@ -32,7 +32,7 @@ namespace AzureSkies.Controllers
         private readonly AzureSkiesDbContext _context;
         private readonly IFlightStatus _service;
 
-        // DI
+        // Dependency Injection
         public FlightsController(AzureSkiesDbContext context, IFlightStatus service)
         {
             _service = service;
@@ -48,10 +48,10 @@ namespace AzureSkies.Controllers
             //var data = eventGridEvent.Data as JObject;
             if (eventGridEvent.Data.From != null)
             {
-            await _service.AddFlight(eventGridEvent.Data.Message, eventGridEvent.Data.From);
+                await _service.AddFlight(eventGridEvent.Data.Message, eventGridEvent.Data.From);
             }
-            eventGridEvent.validationResponse = eventGridEvent.Data.validationCode;
-            return Ok(eventGridEvent);
+                eventGridEvent.validationResponse = eventGridEvent.Data.validationCode;
+                return Ok(eventGridEvent);
             }
 
         [HttpGet("outgoing")]
@@ -67,7 +67,6 @@ namespace AzureSkies.Controllers
             await _service.Delete(id);
             return NoContent();
         }
-
     }
 }
 
