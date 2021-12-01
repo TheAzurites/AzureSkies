@@ -1,6 +1,7 @@
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\AzureSkies.exe
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\wwwroot\css\site.css
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\wwwroot\favicon.ico
+C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\AzureSkiesLogo.PNG
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\wwwroot\js\site.js
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\Jona\source\repos\TheAzurites\AzureSkies\AzureSkies\AzureSkies\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map

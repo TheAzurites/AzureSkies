@@ -17,6 +17,7 @@ namespace AzureSkies.Models
         public string AirlineName { get; set; }
         public string FlightIcao { get; set; }
         public string FlightNumber { get; set; }
+        [Required]
         public string PhoneNumbers { get; set; }
     }
 }
